@@ -77,9 +77,10 @@ def _make_trace(
     session_traces.setdefault(session_id, []).append(trace)
     logger.info(f"[{agent_name}] {message}")
     try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            asyncio.ensure_future(append_trace(session_id, trace))
+        loop = asyncio.get_running_loop()
+        asyncio.ensure_future(append_trace(session_id, trace))
+    except RuntimeError:
+        pass  # no running loop — skip DB persistence
     except Exception:
         pass
     return trace
@@ -270,7 +271,7 @@ async def run_research_workflow(
     yield _sse(_make_trace(session_id, "Query Rewriter Agent", "started", "Rewriting query for optimal retrieval..."))
     await asyncio.sleep(0)
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     rewritten = await loop.run_in_executor(
         None, lambda: run_query_rewriter_agent(query, metrics=metrics)
     )
@@ -292,7 +293,7 @@ async def run_research_workflow(
     if route in ("WEB", "HYBRID"):
         retrieval_tasks.append(("web", run_search_agent(query, rewritten, metrics)))
     if route in ("RAG", "HYBRID") and uploads_exist:
-        retrieval_tasks.append(("rag", asyncio.get_event_loop().run_in_executor(
+        retrieval_tasks.append(("rag", asyncio.get_running_loop().run_in_executor(
             None, lambda: run_rag_agent(query, session_id, top_k=10, rewritten=rewritten, metrics=metrics)
         )))
 
