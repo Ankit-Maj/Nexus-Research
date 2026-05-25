@@ -35,6 +35,8 @@ from app.models.schemas import (
     OutlineSection,
     PlannerOutlineResponse,
     RetrievalScore,
+    ValidatorFinding,
+    RiskItem,
 )
 from app.agents.definitions import (
     run_router_agent,
@@ -254,7 +256,6 @@ async def run_research_workflow(
         ))
     except Exception as e:
         logger.error(f"Planner failed: {e}")
-        from app.models.schemas import OutlineSection
         outline_res = PlannerOutlineResponse(
             title=f"Research Report: {query}",
             sections=[
@@ -425,7 +426,6 @@ async def run_research_workflow(
             {"integrity_score": validator_res.overall_integrity_score},
         ))
     except Exception as e:
-        from app.models.schemas import ValidatorFinding
         validator_res = ValidatorResponse(
             overall_integrity_score=5.0,
             findings=[ValidatorFinding(
@@ -453,7 +453,6 @@ async def run_research_workflow(
             {"risk_count": len(risk_res.risks)},
         ))
     except Exception as e:
-        from app.models.schemas import RiskItem
         risk_res = RiskAnalysisResponse(
             summary="Risk analysis failed.",
             risks=[RiskItem(level="MEDIUM", impact=f"Agent failed: {e}", confidence_score=0.0)],
