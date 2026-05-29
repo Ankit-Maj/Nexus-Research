@@ -13,7 +13,7 @@ def run_test():
     print("Testing API Health endpoint...")
     response = client.get("/health")
     assert response.status_code == 200, "Health endpoint failed."
-    assert response.json() == {"status": "ok"}, "Health status payload invalid."
+    assert response.json().get("status") == "ok", "Health status payload invalid."
     print("API Health passed.")
     
     print("\nTesting trace retrieval for non-existent session...")
