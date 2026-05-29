@@ -17,6 +17,9 @@ RUN apt-get update -o Acquire::CompressionTypes::Order::=gz && \
 WORKDIR /workspace
 
 COPY requirements.txt .
+# Install CPU-only torch first to prevent sentence-transformers from pulling
+# the full CUDA build (~1.5 GB of GPU packages) into a CPU-only container.
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ ./app/

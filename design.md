@@ -1,4 +1,4 @@
-# NEXUS — System Design Document
+# LEXICON — System Design Document
 
 **Version:** 2.0.0  
 **Stack:** FastAPI · React · MongoDB Atlas · Groq · Tavily · FAISS · BM25
@@ -7,7 +7,7 @@
 
 ## 1. System Overview
 
-NEXUS is a multi-agent AI research orchestration platform. It accepts a natural language research query and produces a structured, cited intelligence report by coordinating a deterministic pipeline of specialized agents. Each agent is isolated, stateless, and reusable. The orchestrator owns all sequencing and state.
+LEXICON is a multi-agent AI research orchestration platform. It accepts a natural language research query and produces a structured, cited intelligence report by coordinating a deterministic pipeline of specialized agents. Each agent is isolated, stateless, and reusable. The orchestrator owns all sequencing and state.
 
 The system is designed around three principles:
 - **Explainability** — every retrieval score, agent decision, and confidence value is tracked and exposed
