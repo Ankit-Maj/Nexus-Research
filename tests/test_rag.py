@@ -33,12 +33,12 @@ def run_test():
     print(f"Retrieved {len(results)} results:")
     for i, r in enumerate(results):
         print(f"Result #{i+1}:")
-        print(f"  Source: {r['source_name']} ({r['source_type']})")
-        print(f"  Score:  {r['score']}")
-        print(f"  Snippet: {r['content'][:100]}...")
+        print(f"  Source: {r.metadata.source_name} ({r.metadata.source_type})")
+        print(f"  Score:  {r.scores.hybrid_score}")
+        print(f"  Snippet: {r.text[:100]}...")
         
     assert len(results) > 0, "No results returned."
-    assert "tesla" in results[0]["content"].lower(), "Top result does not match query."
+    assert "tesla" in results[0].text.lower(), "Top result does not match query."
     print("\nHybrid RAG tests passed successfully!")
 
 if __name__ == "__main__":
