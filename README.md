@@ -1,4 +1,4 @@
-# NEXUS — AI Multi-Agent Research Intelligence Platform
+# LEXICON — AI Multi-Agent Research Intelligence Platform
 
 > Enterprise-grade multi-agent research orchestration system. Produces structured intelligence reports with source validation, inline citations, retrieval scoring, and full workflow observability.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-NEXUS is a production-ready AI research platform that coordinates a pipeline of specialized agents to answer complex research queries. It is not a chatbot wrapper — it is a deterministic, staged orchestration system that plans, retrieves, synthesizes, validates, and compiles structured reports with full source traceability.
+LEXICON is a production-ready AI research platform that coordinates a pipeline of specialized agents to answer complex research queries. It is not a chatbot wrapper — it is a deterministic, staged orchestration system that plans, retrieves, synthesizes, validates, and compiles structured reports with full source traceability.
 
 The system supports document ingestion (PDF, DOCX, TXT, MD) with hybrid vector + keyword retrieval, live web search via Tavily, JWT authentication, MongoDB persistence, and real-time SSE streaming of agent execution traces to the frontend.
 

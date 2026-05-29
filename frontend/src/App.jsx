@@ -118,7 +118,7 @@ function AuthScreen({ onLogin }) {
               <Cpu className="w-5 h-5 text-crimson-400" />
             </div>
             <div>
-              <div className="text-sm font-bold text-zinc-100 tracking-wide">NEXUS RESEARCH</div>
+              <div className="text-sm font-bold text-zinc-100 tracking-wide">LEXICON RESEARCH</div>
               <div className="text-[10px] text-crimson-500 font-semibold tracking-widest uppercase">Intelligence Platform</div>
             </div>
           </div>
@@ -759,7 +759,7 @@ function Sidebar({
           <Cpu className="w-4 h-4 text-crimson-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-bold text-zinc-100 tracking-wide">NEXUS</div>
+          <div className="text-sm font-bold text-zinc-100 tracking-wide">LEXICON</div>
           <div className="text-[9px] text-crimson-600 font-bold tracking-widest uppercase">Research Intelligence</div>
         </div>
         <button onClick={onLogout} title="Sign out"

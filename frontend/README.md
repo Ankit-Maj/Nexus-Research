@@ -1,6 +1,6 @@
-# NEXUS Frontend
+# LEXICON Frontend
 
-React 19 + Vite + Tailwind CSS frontend for the NEXUS AI Research Intelligence Platform.
+React 19 + Vite + Tailwind CSS frontend for the LEXICON AI Research Intelligence Platform.
 
 ## Stack
 

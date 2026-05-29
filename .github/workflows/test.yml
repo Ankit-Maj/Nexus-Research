@@ -1,0 +1,43 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      # Dummy values so config/pydantic-settings loads without error
+      MONGO_URI: mongodb://localhost:27017
+      JWT_SECRET: ci-test-secret
+      GROQ_API_KEY: dummy
+      TAVILY_API_KEY: dummy
+
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run RAG unit tests
+        run: python tests/test_rag.py
+
+      - name: Run API integration tests
+        run: python tests/test_api.py
